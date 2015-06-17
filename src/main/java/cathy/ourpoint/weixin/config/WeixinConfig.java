@@ -29,7 +29,7 @@ public class WeixinConfig extends JFinalConfig {
 	
 	public void configConstant(Constants constants) {
 		loadProp("configuration.properties");
-		constants.setDevMode(PropKit.getBoolean("devMode", false));
+		constants.setDevMode(PropKit.getBoolean("devMode", true));
 		
 		// ApiConfigKit 设为开发模式可以在开发阶段输出请求交互的 xml 与 json 数据
 		ApiConfigKit.setDevMode(constants.getDevMode());
