@@ -36,7 +36,7 @@ task createWebProject(dependsOn: 'createJavaProject') << {
     webAppDir.mkdirs()
 }
 
-jar {
-    baseName = 'jfinal-weixin-cathy-sdk'
-    version =  '1.0'
+war {
+    from 'src/main/webapp'
+    exclude 'configuration.properties'
 }
