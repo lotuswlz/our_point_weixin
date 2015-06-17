@@ -13,16 +13,21 @@ import cathy.jfinal.weixin.sdk.msg.in.event.*;
 import cathy.jfinal.weixin.sdk.msg.in.speech_recognition.InSpeechRecognitionResults;
 import cathy.jfinal.weixin.sdk.msg.out.*;
 import com.jfinal.kit.PropKit;
+import org.apache.log4j.Logger;
 
 public class WeixinMsgController extends MsgController {
 	
 	private static final String helpStr = "\t发送 help 可获得帮助，发送 \"美女\" 可看美女，发送 news 可看新闻，发送 music 可听音乐，你还可以试试发送图片、语音、位置、收藏等信息，看会有什么 。公众号持续更新中，想要更多惊喜欢迎每天关注 ^_^";
-	
+
+	private static final Logger LOGGER = Logger.getLogger(WeixinMsgController.class);
+
 	public ApiConfig getApiConfig() {
 		ApiConfig ac = new ApiConfig();
 		
 		ac.setToken(PropKit.get("token"));
+		LOGGER.info("Get token: " + ac.getToken());
 		ac.setAppId(PropKit.get("appId"));
+		LOGGER.info("Get AppId: " + ac.getAppId());
 		ac.setAppSecret(PropKit.get("appSecret"));
 		
 		ac.setEncryptMessage(PropKit.getBoolean("encryptMessage", false));
@@ -32,6 +37,7 @@ public class WeixinMsgController extends MsgController {
 	
 	protected void processInTextMsg(InTextMsg inTextMsg) {
 		String msgContent = inTextMsg.getContent().trim();
+		LOGGER.info("message: " + msgContent);
 		// 帮助提示
 		if ("help".equalsIgnoreCase(msgContent) || "帮助".equals(msgContent)) {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
