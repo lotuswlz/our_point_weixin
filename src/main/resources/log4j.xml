@@ -13,8 +13,8 @@
         </layout>
     </appender>
 
-    <category name="org.springframework">
-        <priority value="warn"/>
+    <category name="cathy.ourpoint">
+        <priority value="info"/>
     </category>
 
     <root>

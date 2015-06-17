@@ -11,14 +11,18 @@ import cathy.ourpoint.weixin.controller.WeixinApiController;
 import cathy.ourpoint.weixin.controller.WeixinMsgController;
 import com.jfinal.config.*;
 import com.jfinal.kit.PropKit;
+import org.apache.log4j.Logger;
 
 public class WeixinConfig extends JFinalConfig {
-	
+
+	private static final Logger LOGGER = Logger.getLogger(WeixinConfig.class);
 	public void loadProp(String fileName) {
 		try {
 			PropKit.use(fileName);
+			LOGGER.info("Add file " + fileName + " successfully.");
 		}
 		catch (Exception e) {
+			LOGGER.fatal(e.getMessage(), e);
 			throw new RuntimeException("loadProp exception", e);
 		}
 	}
@@ -44,8 +48,8 @@ public class WeixinConfig extends JFinalConfig {
 		// me.add(ecp);
 	}
 	
-	public void configInterceptor(Interceptors me) {
-		
+	public void configInterceptor(Interceptors interceptors) {
+		LOGGER.info("interceptors size: " + (interceptors != null ? (interceptors.getInterceptorArray() != null ? interceptors.getInterceptorArray().length : 0) : 0));
 	}
 	
 	public void configHandler(Handlers me) {
