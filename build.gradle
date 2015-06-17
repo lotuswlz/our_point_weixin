@@ -37,6 +37,5 @@ task createWebProject(dependsOn: 'createJavaProject') << {
 }
 
 war {
-    from 'src/main/webapp'
-    exclude 'configuration.properties'
+    rootSpec.exclude("**/configuration.properties")
 }
