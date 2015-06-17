@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 
 public class WeixinMsgController extends MsgController {
 	
-	private static final String helpStr = "\t发送 help 可获得帮助，发送 \"美女\" 可看美女，发送 news 可看新闻，发送 music 可听音乐，你还可以试试发送图片、语音、位置、收藏等信息，看会有什么 。公众号持续更新中，想要更多惊喜欢迎每天关注 ^_^";
+	private static final String helpStr = "您好，欢迎来到【风景在途一起走】，测试期间，发送：\n Test: 查看测试帖; Login: 进入主站";
 
 	private static final Logger LOGGER = Logger.getLogger(WeixinMsgController.class);
 
@@ -47,8 +47,8 @@ public class WeixinMsgController extends MsgController {
 		// 图文消息测试
 		else if ("news".equalsIgnoreCase(msgContent)) {
 			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
-			outMsg.addNews("JFinal 1.8 发布，JAVA 极速 WEB+ORM 框架", "现在就加入 JFinal 极速开发世界，节省更多时间去跟女友游山玩水 ^_^", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq1ibBkhSA1BibMuMxLuHIvUfiaGsK7CC4kIzeh178IYSHbYQ5eg9tVxgEcbegAu22Qhwgl5IhZFWWXUw/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200313981&idx=1&sn=3bc5547ba4beae12a3e8762ababc8175#rd");
-			outMsg.addNews("JFinal 1.6 发布,JAVA极速WEB+ORM框架", "JFinal 1.6 主要升级了 ActiveRecord 插件，本次升级全面支持多数源、多方言、多缓", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq0fcR8VmNCgugHXv7gVlxI6w95RBlKLdKUTjhOZIHGSWsGvjvHqnBnjIWHsicfcXmXlwOWE6sb39kA/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200121522&idx=1&sn=ee24f352e299b2859673b26ffa4a81f6#rd");
+			outMsg.addNews("JFinal 1.8 发布，JAVA 极速 WEB+ORM 框架", "Testing", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq1ibBkhSA1BibMuMxLuHIvUfiaGsK7CC4kIzeh178IYSHbYQ5eg9tVxgEcbegAu22Qhwgl5IhZFWWXUw/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200313981&idx=1&sn=3bc5547ba4beae12a3e8762ababc8175#rd");
+			outMsg.addNews("JFinal 1.6 发布,JAVA极速WEB+ORM框架", "Testing", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq0fcR8VmNCgugHXv7gVlxI6w95RBlKLdKUTjhOZIHGSWsGvjvHqnBnjIWHsicfcXmXlwOWE6sb39kA/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200121522&idx=1&sn=ee24f352e299b2859673b26ffa4a81f6#rd");
 			render(outMsg);
 		}
 		// 音乐消息测试
@@ -69,6 +69,10 @@ public class WeixinMsgController extends MsgController {
 					"http://mmbiz.qpic.cn/mmbiz/I1xX9hNeTicibjKuHNK7yj7ddjx9REp28UpBJyJ0O4OmrAwHG67rbNEorCJWpnTu6icMAy8zTLQDQgicSA2ucg1dMg/640?wx_fmt=jpeg&wxfrom=5",
 					"http://mp.weixin.qq.com/s?__biz=MzAxNzYxNjIxMw==&mid=206637505&idx=1&sn=d570b595f5fce2300b9297933ac92f5b&key=af154fdc40fed003c88dcf4d499e50e4829752966a6598417c0807674484ee6e9a4132bd77a29d8dcb585874cab8e76c&ascene=0&uin=MTg1NzU0NTM2MQ%3D%3D&devicetype=iMac+MacBookPro11%2C2+OSX+OSX+10.10.3+build%2814D136%29&version=11020012&pass_ticket=urG60AbY9HaRqyLuSvAzkYzAz26iibGUhcL6U1tpzFG82NIu4X0Cwf3tZPN5WbqP");
 
+			render(outMsg);
+		} else if ("Login".equalsIgnoreCase(msgContent)) {
+			OutImageMsg outMsg = new OutImageMsg(inTextMsg);
+			outMsg.setMediaId("1696181683");
 			render(outMsg);
 		}
 		// 其它文本消息直接返回原值 + 帮助提示
