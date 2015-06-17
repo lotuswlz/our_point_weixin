@@ -6,6 +6,8 @@ apply plugin: 'jetty'
 sourceCompatibility = 1.6
 version = '1.0'
 
+compileJava.options.encoding = 'UTF-8'
+
 repositories {
     flatDir {
         dirs 'libs'
