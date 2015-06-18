@@ -71,14 +71,7 @@ public class WeixinMsgController extends MsgController {
 
 			render(outMsg);
 		} else if ("Login".equalsIgnoreCase(msgContent)) {
-			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
-			outMsg.addNews(
-					"Login",
-					null,
-					"https://mmbiz.qlogo.cn/mmbiz/I1xX9hNeTiciciacF3sW7WmyoLiajicfianx21le6rgtG43SzCQXZKdpgfhZribZg9FrTIUp4256OZ9OBApKeOicuhvEoA/0?wx_fmt=jpeg",
-					"http://ec2-52-24-126-178.us-west-2.compute.amazonaws.com/cathy_practise/index");
-
-			render(outMsg);
+			forwardAction("http://ec2-52-24-126-178.us-west-2.compute.amazonaws.com/cathy_practise/index");
 		}
 		// 其它文本消息直接返回原值 + 帮助提示
 		else {
