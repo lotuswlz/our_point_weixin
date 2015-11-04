@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 
 public class WeixinMsgController extends MsgController {
 	
-	private static final String helpStr = "您好，欢迎来到【风景在途一起走】，测试期间，发送：\n Test: 查看测试帖; Login: 进入主站";
+	private static final String helpStr = "您好，欢迎来到【风景在途一起走】，测试期间，发送：\n\n Test: 查看测试帖; Login: 进入主站";
 
 	private static final Logger LOGGER = Logger.getLogger(WeixinMsgController.class);
 
