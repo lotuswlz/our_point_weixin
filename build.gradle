@@ -50,6 +50,6 @@ task copy_configuration(type: Copy) {
 }
 
 task copyWar(type: Copy) {
-    from "${libsDir}/our*.war"
+    from "${libsDir}/our_point_weixin-1.0.war"
     into '/usr/share/tomcat8/webapps/'
 }
