@@ -42,6 +42,9 @@ task createWebProject(dependsOn: 'createJavaProject') << {
     webAppDir.mkdirs()
 }
 
-war {
-    rootSpec.exclude("**/configuration.properties")
+war.dependsOn 'copy_configuration'
+
+task copy_configuration(type: Copy) {
+    from '/home/ec2-user/code_sources/configuration.properties'
+    into "$buildDir/resources/main"
 }
