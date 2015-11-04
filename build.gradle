@@ -48,3 +48,8 @@ task copy_configuration(type: Copy) {
     from '/home/ec2-user/code_sources/configuration.properties'
     into "$buildDir/resources/main"
 }
+
+task copyWar(type: Copy) {
+    from "${libsDir}/our*.war"
+    into '/usr/share/tomcat8/webapps/'
+}
