@@ -18,7 +18,7 @@ public class TestHandler {
 
     public void processMessage(InTextMsg inTextMsg) {
         TextMessageRouter textMessageRouter = TextMessageRouter.getInstance();
-        textMessageRouter.addUserIfNotExist(this.controller);
+        textMessageRouter.addUserIfNotExist(inTextMsg.getFromUserName(), this.controller);
         textMessageRouter.sendMsg(inTextMsg.getFromUserName(), "User Name: " + inTextMsg.getFromUserName() + "; to: " + inTextMsg.getToUserName() + "; Text: " + inTextMsg.getContent() + ";(msgId:" + inTextMsg.getMsgId() + ", type:" + inTextMsg.getMsgType() + ")");
     }
 }
