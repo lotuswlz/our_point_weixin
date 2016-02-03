@@ -12,6 +12,7 @@ import cathy.jfinal.weixin.sdk.msg.in.*;
 import cathy.jfinal.weixin.sdk.msg.in.event.*;
 import cathy.jfinal.weixin.sdk.msg.in.speech_recognition.InSpeechRecognitionResults;
 import cathy.jfinal.weixin.sdk.msg.out.*;
+import cathy.ourpoint.weixin.handler.TestHandler;
 import com.jfinal.kit.PropKit;
 import org.apache.log4j.Logger;
 
@@ -38,27 +39,9 @@ public class WeixinMsgController extends MsgController {
 	protected void processInTextMsg(InTextMsg inTextMsg) {
 		String msgContent = inTextMsg.getContent().trim();
 		LOGGER.info("message: " + msgContent);
-		// 帮助提示
 		if ("help".equalsIgnoreCase(msgContent) || "帮助".equals(msgContent)) {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
 			outMsg.setContent(helpStr);
-			render(outMsg);
-		}
-		// 图文消息测试
-		else if ("news".equalsIgnoreCase(msgContent)) {
-			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
-			outMsg.addNews("JFinal 1.8 发布，JAVA 极速 WEB+ORM 框架", "Testing", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq1ibBkhSA1BibMuMxLuHIvUfiaGsK7CC4kIzeh178IYSHbYQ5eg9tVxgEcbegAu22Qhwgl5IhZFWWXUw/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200313981&idx=1&sn=3bc5547ba4beae12a3e8762ababc8175#rd");
-			outMsg.addNews("JFinal 1.6 发布,JAVA极速WEB+ORM框架", "Testing", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq0fcR8VmNCgugHXv7gVlxI6w95RBlKLdKUTjhOZIHGSWsGvjvHqnBnjIWHsicfcXmXlwOWE6sb39kA/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200121522&idx=1&sn=ee24f352e299b2859673b26ffa4a81f6#rd");
-			render(outMsg);
-		}
-		// 音乐消息测试
-		else if ("music".equalsIgnoreCase(msgContent) || "音乐".equals(msgContent)) {
-			OutMusicMsg outMsg = new OutMusicMsg(inTextMsg);
-			outMsg.setTitle("Listen To Your Heart");
-			outMsg.setDescription("建议在 WIFI 环境下流畅欣赏此音乐");
-			outMsg.setMusicUrl("http://www.jfinal.com/Listen_To_Your_Heart.mp3");
-			outMsg.setHqMusicUrl("http://www.jfinal.com/Listen_To_Your_Heart.mp3");
-			outMsg.setFuncFlag(true);
 			render(outMsg);
 		}
 		else if ("Test".equalsIgnoreCase(msgContent)) {
@@ -77,7 +60,8 @@ public class WeixinMsgController extends MsgController {
 		}
 		// 其它文本消息直接返回原值 + 帮助提示
 		else {
-			renderOutTextMsg("文本消息已成功接收，内容为： " + inTextMsg.getContent() + "\n\n" + helpStr);
+			TestHandler handler = new TestHandler(this);
+			handler.processMessage(inTextMsg);
 		}
 	}
 	
