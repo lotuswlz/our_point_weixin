@@ -59,7 +59,8 @@ public class WeixinMsgController extends MsgController {
 			render(outMsg);
 		} else {
 			TextMessageHandler handler = new TestHandler();
-			handler.processMessage(inTextMsg);
+			OutTextMsg outTextMsg = handler.processMessage(inTextMsg);
+			render(outTextMsg);
 		}
 	}
 	
