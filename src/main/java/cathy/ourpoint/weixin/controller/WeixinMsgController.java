@@ -63,10 +63,12 @@ public class WeixinMsgController extends MsgController {
 				OutTextMsg outTextMsg = handler.processMessage(inTextMsg);
 				render(outTextMsg);
 			} catch (Exception e) {
+				e.printStackTrace();
 				OutTextMsg outMsg = new OutTextMsg(inTextMsg);
 				outMsg.setContent(e.getMessage());
 				render(outMsg);
 			}
+			LOGGER.info("~~~~~~~~~~~~end");
 		}
 	}
 	
