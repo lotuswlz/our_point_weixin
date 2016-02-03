@@ -1,6 +1,7 @@
 package cathy.ourpoint.weixin.handler;
 
 import cathy.jfinal.weixin.sdk.msg.in.InTextMsg;
+import cathy.jfinal.weixin.sdk.msg.out.OutTextMsg;
 
 /**
  * @author lzwu
@@ -9,7 +10,7 @@ import cathy.jfinal.weixin.sdk.msg.in.InTextMsg;
 public class RegisterHandler implements TextMessageHandler {
 
     @Override
-    public void processMessage(InTextMsg inTextMsg) {
-
+    public OutTextMsg processMessage(InTextMsg inTextMsg) {
+        return null;
     }
 }

@@ -1,24 +1,17 @@
 package cathy.ourpoint.weixin.handler;
 
-import cathy.jfinal.weixin.sdk.jfinal.MsgController;
 import cathy.jfinal.weixin.sdk.msg.in.InTextMsg;
-import cathy.ourpoint.weixin.router.TextMessageRouter;
+import cathy.jfinal.weixin.sdk.msg.out.OutTextMsg;
 
 /**
  * @author lzwu
  * @since 2/3/16
  */
-public class TestHandler {
-
-    private MsgController controller;
-
-    public TestHandler(MsgController controller) {
-        this.controller = controller;
-    }
-
-    public void processMessage(InTextMsg inTextMsg) {
-        TextMessageRouter textMessageRouter = TextMessageRouter.getInstance();
-        textMessageRouter.addUserIfNotExist(inTextMsg.getFromUserName(), this.controller);
-        textMessageRouter.sendMsg(inTextMsg.getFromUserName(), "User Name: " + inTextMsg.getFromUserName() + "; to: " + inTextMsg.getToUserName() + "; Text: " + inTextMsg.getContent() + ";(msgId:" + inTextMsg.getMsgId() + ", type:" + inTextMsg.getMsgType() + ")");
+public class TestHandler implements TextMessageHandler{
+    @Override
+    public OutTextMsg processMessage(InTextMsg inTextMsg) {
+        OutTextMsg msg = new OutTextMsg(inTextMsg);
+        msg.setContent("from: " + inTextMsg.getFromUserName() + "; content: " + inTextMsg.getContent());
+        return msg;
     }
 }
