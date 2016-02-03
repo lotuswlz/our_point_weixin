@@ -26,8 +26,7 @@ public class TextMessageRouter {
         return instance;
     }
 
-    public void addUserIfNotExist(MsgController controller) {
-        String fromUserName = controller.getInMsg().getFromUserName();
+    public void addUserIfNotExist(String fromUserName, MsgController controller) {
         if (!userMsgControllerMap.containsKey(fromUserName)) {
             userMsgControllerMap.put(fromUserName, controller);
         }
