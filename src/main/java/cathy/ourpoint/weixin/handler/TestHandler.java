@@ -2,6 +2,7 @@ package cathy.ourpoint.weixin.handler;
 
 import cathy.jfinal.weixin.sdk.jfinal.MsgController;
 import cathy.jfinal.weixin.sdk.msg.in.InTextMsg;
+import cathy.ourpoint.weixin.router.TextMessageRouter;
 
 /**
  * @author lzwu
@@ -16,6 +17,8 @@ public class TestHandler {
     }
 
     public void processMessage(InTextMsg inTextMsg) {
-        this.controller.renderOutTextMsg("User Name: " + inTextMsg.getFromUserName() + "; to: " + inTextMsg.getToUserName() + "; Text: " + inTextMsg.getContent() + ";(msgId:" + inTextMsg.getMsgId() + ", type:" + inTextMsg.getMsgType() + ")");
+        TextMessageRouter textMessageRouter = TextMessageRouter.getInstance();
+        textMessageRouter.addUserIfNotExist(this.controller);
+        textMessageRouter.sendMsg(inTextMsg.getFromUserName(), "User Name: " + inTextMsg.getFromUserName() + "; to: " + inTextMsg.getToUserName() + "; Text: " + inTextMsg.getContent() + ";(msgId:" + inTextMsg.getMsgId() + ", type:" + inTextMsg.getMsgType() + ")");
     }
 }

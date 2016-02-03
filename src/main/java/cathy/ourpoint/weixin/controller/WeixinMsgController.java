@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 
 public class WeixinMsgController extends MsgController {
 	
-	private static final String helpStr = "您好，欢迎来到【风景在途一起走】，测试期间，发送：\n\n Test: 查看测试帖; Login: 进入主站";
+	private static final String helpStr = "您好，欢迎来到【风景在途一起走】，测试期间，发送：\n\n Test: 查看测试帖;";
 
 	private static final Logger LOGGER = Logger.getLogger(WeixinMsgController.class);
 
@@ -44,7 +44,7 @@ public class WeixinMsgController extends MsgController {
 			outMsg.setContent(helpStr);
 			render(outMsg);
 		}
-		else if ("Test".equalsIgnoreCase(msgContent)) {
+		else if ("Test".equalsIgnoreCase(msgContent) || msgContent.contains("测试帖")) {
 			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
 			outMsg.addNews(
 					"Test",
@@ -53,13 +53,7 @@ public class WeixinMsgController extends MsgController {
 					"http://mp.weixin.qq.com/s?__biz=MzAxNzYxNjIxMw==&mid=206637505&idx=1&sn=d570b595f5fce2300b9297933ac92f5b&key=af154fdc40fed003c88dcf4d499e50e4829752966a6598417c0807674484ee6e9a4132bd77a29d8dcb585874cab8e76c&ascene=0&uin=MTg1NzU0NTM2MQ%3D%3D&devicetype=iMac+MacBookPro11%2C2+OSX+OSX+10.10.3+build%2814D136%29&version=11020012&pass_ticket=urG60AbY9HaRqyLuSvAzkYzAz26iibGUhcL6U1tpzFG82NIu4X0Cwf3tZPN5WbqP");
 
 			render(outMsg);
-		} else if ("Login".equalsIgnoreCase(msgContent)) {
-			OutTextMsg textMsg = new OutTextMsg(inTextMsg);
-			textMsg.setContent("http://ec2-52-24-126-178.us-west-2.compute.amazonaws.com/cathy_practise/index");
-			render(textMsg);
-		}
-		// 其它文本消息直接返回原值 + 帮助提示
-		else {
+		} else {
 			TestHandler handler = new TestHandler(this);
 			handler.processMessage(inTextMsg);
 		}
