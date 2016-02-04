@@ -7,8 +7,6 @@
 package cathy.ourpoint.weixin.controller;
 
 import cathy.jfinal.weixin.sdk.api.ApiConfig;
-import cathy.jfinal.weixin.sdk.api.ApiResult;
-import cathy.jfinal.weixin.sdk.api.UserApi;
 import cathy.jfinal.weixin.sdk.jfinal.MsgController;
 import cathy.jfinal.weixin.sdk.msg.in.*;
 import cathy.jfinal.weixin.sdk.msg.in.event.*;
@@ -73,10 +71,8 @@ public class WeixinMsgController extends MsgController {
 				OutTextMsg outTextMsg = handler.processMessage(inTextMsg);
 				render(outTextMsg);
 
-				ApiResult userInfo = UserApi.getUserInfo("oVSvds4xQTUrzMmHR5O4UyOTPa-I");
-				String userInfoJson = userInfo.getJson();
 				OutTextMsg outTextMsg2 = handler.processMessage(inTextMsg);
-				outTextMsg2.setContent(userInfoJson);
+				outTextMsg2.setContent("This is second message");
 				render(outTextMsg2);
 			} catch (Exception e) {
 				e.printStackTrace();

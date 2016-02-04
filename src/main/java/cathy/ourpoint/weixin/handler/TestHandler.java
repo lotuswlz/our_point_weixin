@@ -11,7 +11,6 @@ public class TestHandler implements TextMessageHandler{
     @Override
     public OutTextMsg processMessage(InTextMsg inTextMsg) {
         OutTextMsg msg = new OutTextMsg(inTextMsg);
-//        msg.setToUserName("oVSvds4xQTUrzMmHR5O4UyOTPa-I");
         msg.setContent("from: " + inTextMsg.getFromUserName() + "; content: " + inTextMsg.getContent());
         return msg;
     }
