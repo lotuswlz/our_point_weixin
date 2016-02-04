@@ -71,9 +71,9 @@ public class WeixinMsgController extends MsgController {
 				OutTextMsg outTextMsg = handler.processMessage(inTextMsg);
 				render(outTextMsg);
 
-				OutTextMsg outTextMsg2 = handler.processMessage(inTextMsg);
-				outTextMsg2.setContent("This is second message");
-				render(outTextMsg2);
+//				OutTextMsg outTextMsg2 = handler.processMessage(inTextMsg);
+//				outTextMsg2.setContent("This is second message");
+//				render(outTextMsg2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				OutTextMsg outMsg = new OutTextMsg(inTextMsg);
